@@ -152,3 +152,30 @@ xrdp
 ├── xrdpvr ······ API for playing media over RDP
 └── xup ········· xorgxrdp client module
 ```
+
+
+Installation in Unbuntu via SSH:
+
+Install XRDP: ```sudo apt install xrdp```
+
+Allow xrdp user in ssl-cert group: ```sudo adduser xrdp ssl-cert```
+
+Removed my Autologin from Ubuntu: ```sudo nano /etc/gdm3/custom.conf```
+
+3.1 Search for these lines and comment them out, if they are acive:
+
+> AutomaticLoginEnable = true
+> AutomaticLogin = <Username>
+
+Restart gdm (if that's your display manager): ```sudo systemctl restart gdm```
+
+Restart XRDP service: ```sudo systemctl restart xrdp```
+
+Also, if you are using firewall, remember to open ports for your rdp connection:
+
+
+Allow your port: ```sudo ufw allow``` (default for windows RDP is 3389)
+
+If you have changed the port, remember to close the default if it's on: ```sudo ufw deny 3389```
+
+Finally, open ports for your RDP through your router firewall.
